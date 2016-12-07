@@ -1,34 +1,51 @@
 <div id="form_invoice_map_marker">
-  <div id="map"></div>
-  <%= button_tag t("invoices.draw"), id: "draw", class: "btn btn-primary nht-invoice-draw" %>
-  <%= form_for [:shop, @invoice], remote: true do |f| %>
-    <%= render "shared/error_messages", object: @invoice %>
-    <%= hidden_field_tag :invoice_form_id, "form_map_marker" %>
-    <% Settings.invoice.invoice_attributes_map_marker.each do |attribute| %>
-      <%= f.hidden_field attribute, id: Settings.invoice.send(attribute) %>
+  <div class="row map">
+    <div class="col-md-2 featured-info"></div>
+    <div id="map" class="col-md-12"></div>
+  </div>
+  <div class="colorgraph"></div>
+  <div class="after_map">
+    <%= button_tag t("invoices.draw"), id: "draw", class: "btn btn-primary nht-invoice-draw" %>
+    <%= form_for [:shop, @invoice], remote: true do |f| %>
+      <%= render "shared/error_messages", object: @invoice %>
+      <%= hidden_field_tag :invoice_form_id, "form_map_marker" %>
+      <% Settings.invoice.invoice_attributes_map_marker.each do |attribute| %>
+        <%= f.hidden_field attribute, id: Settings.invoice.send(attribute) %>
+      <% end %>
+      <div class="row">
+        <div class="col-xs-10 full-width">
+          <div class="input-group zoom">
+            <span class="input-group-addon">
+              <i class="fa fa-map-marker nht-marker-start" aria-hidden="true"></i>
+            </span>
+            <%= f.text_field :address_start, class: "form-control nht-fix-input",
+              placeholder: t("invoices.enter_address_start"), id: "map-address0" %>
+          </div>
+          <div class="input-group zoom">
+            <span class="input-group-addon">
+              <i class="fa fa-map-marker nht-marker-finish" aria-hidden="true"></i>
+            </span>
+            <%= f.text_field :address_finish, class: "form-control nht-fix-input",
+              placeholder: t("invoices.enter_address_finish"), id: "map-address1" %>
+          </div>
+          <div class="input-group-out zoom">
+            <span class="input-group-addout">
+              <%= image_tag "distance.png" %>
+            </span>
+            <span class="nht-invoice-distance-content"><%= t "invoices._distance" %>:
+              <%= f.text_field :distance_invoice, readonly: true,
+                id: "distance_invoice" %>
+            </span>
+          </div>
+          <%= render "form_info" %>
+        </div>
+        <div class="col-xs-2 full-width">
+          <span data-toggle="modal" data-target="#form_invoice_info">
+            <%= image_tag "next-page.png", class: "bt-next pointer" %>
+          </span>
+        </div>
+      </div>
     <% end %>
-
-    <div class="input-group">
-      <span class="input-group-addon">
-        <i class="fa fa-map-marker nht-marker-start" aria-hidden="true"></i>
-      </span>
-      <%= f.text_field :address_start, class: "form-control nht-fix-input",
-        placeholder: t("invoices.enter_address_start"), id: "map-address0" %>
-    </div>
-
-    <div class="input-group">
-      <span class="input-group-addon">
-        <i class="fa fa-map-marker nht-marker-finish" aria-hidden="true"></i>
-      </span>
-      <%= f.text_field :address_finish, class: "form-control nht-fix-input",
-        placeholder: t("invoices.enter_address_finish"), id: "map-address1" %>
-    </div>
-
-    <div class="nht-invoice-distance">
-      <span class="nht-invoice-distance-title"><%= t "invoices._distance" %>: </span>
-      <span><%= f.text_field :distance_invoice, readonly: true,
-        id: "distance_invoice" %></span>
-    </div>
-    <%= f.submit t("invoices.next"), class: "btn btn-primary nht-invoice-next" %>
-  <% end %>
+  </div>
+  <div class="colorgraph"></div>
 </div>

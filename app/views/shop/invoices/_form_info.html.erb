@@ -1,9 +1,10 @@
-<div id="form_invoice_info">
+<div id="form_invoice_info" data-toggle="modal" data-backdrop="static"
+  class="modal fade"  data-keyboard="false">
   <div class="modal-dialog">
     <div class="modal-content">
       <div class="form-new-invoice">
         <%= form_for [:shop, @invoice], remote: true do |f| %>
-          <h2><%= t "invoices.title" %></h2>
+          <h2 class="diamond"><%= t "invoices.title" %></h2>
 
           <%= render "shared/error_messages", object: @invoice %>
           <% Settings.invoice.invoice_attributes_info.each do |attribute| %>
@@ -62,7 +63,7 @@
               placeholder: t("invoices.delivery_time") %>
           </div>
 
-          <h2><%= t "invoices.customer" %></h2>
+          <h2 class="diamond"><%= t "invoices.customer" %></h2>
 
           <div class="input-group">
             <span class="input-group-addon">
@@ -89,11 +90,12 @@
           </div>
 
           <div class="nht-btn-invoice">
-            <%= f.submit t(:_create), class: "btn btn-primary td-fix-button-1" %>
-            <%= link_to t(:_cancel), "#", class: "btn btn-danger td-fix-button-2" %>
+            <%= f.submit t(:_create), class: "td-fix-button-1" %>
+            <%= link_to t(:_cancel), "#", class: "td-fix-button-2" %>
           </div>
         <% end %>
       </div>
     </div>
   </div>
 </div>
+<i class="e-icon -icon-cart -margin-right"></i>
