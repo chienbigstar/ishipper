@@ -101,6 +101,10 @@ shipper:
     remove_from_favorite_list: remove_from_favorite_list
     add_to_black_list: add_to_black_list
     remove_from_black_list: remove_from_black_list
+  search_attributes:
+    - plate_number
+    - name
+    - aa
 type_update:
   status: status
   invoice: invoice
