@@ -22,3 +22,15 @@ function getCookie(name) {
   var parts = value.split("; " + name + "=");
   if (parts.length == 2) return parts.pop().split(";").shift();
 }
+
+function realtime_list_shippers(data){
+  if($('#id-nht-list-shippers').is(':visible')){
+    id = $('#id-nht-list-shippers').attr('invoice_id');
+    if(id && id == data.invoice_id){
+      link = '/shop/list_shippers?invoice_id=' + id +'&add_more=' + 1 ;
+      $('body').append('<a id="add_more_shipper" data-remote="true" href="' + link + '"></a>');
+      $('#add_more_shipper').trigger('click');
+      $('#add_more_shipper').remove();
+    }
+  }
+}

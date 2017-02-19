@@ -79,4 +79,5 @@ Rails.application.routes.draw do
     resources :users
     resources :invoices
   end
+  get "/realtime/new", to: "realtime#new"
 end

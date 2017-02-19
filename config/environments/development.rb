@@ -58,4 +58,6 @@ Rails.application.configure do
     Bullet.console = true
     Bullet.rails_logger = true
   end
+
+  $redis = Redis.new(:host => 'localhost', :port=> 6379)
 end

@@ -29,7 +29,6 @@ class Invoice < ApplicationRecord
   validates :latitude_finish, presence: true
   validates :longitude_finish, presence: true
 
-
   ATTRIBUTES_PARAMS = [:name, :address_start, :address_finish, :delivery_time,
     :distance_invoice, :description, :price, :shipping_price, :weight,
     :customer_name, :customer_number, :latitude_start, :longitude_start,

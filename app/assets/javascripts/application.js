@@ -19,6 +19,7 @@
 // This is a must
 //= require i18n/translations
 //= require jquery
+//= require socket.io
 //= require jquery_ujs
 //= require jquery.remotipart
 //= require bootstrap

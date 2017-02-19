@@ -30,34 +30,7 @@
       <div class="div-table-content">
         <table class="table table-condensed">
           <tbody class="index-shipper-table-body" id="hatd-shipper-table-content">
-            <% @shippers.each do |shipper| %>
-              <tr data-id="<%= shipper[:id] %>"  class="<%= shipper[:favorite_user] %> received_shipper_row"
-                data-user-invoice-id="<%= shipper[:user_invoice_id] %>" data-invoice-id="<%= @invoice.id %>">
-                <td>
-                  <div class="index-shipper-avatar">
-                    <%= image_tag avatar_profile(shipper[:avatar]), class: "img-responsive" %>
-                  </div>
-                </td>
-                <td>
-                  <%= shipper[:name] %>
-                  <br>
-                  <%= shipper[:phone_number] %>
-                </td>
-                <td>
-                  <b><%= t "invoices.rate", rate: shipper[:rate] %></b>
-                </td>
-                <td>
-                  <%= form_tag shop_user_invoice_path(shipper[:user_invoice_id]),
-                    method: :patch, remote: true, id: "accept_user_invoice" do %>
-                    <%= button_tag type: "submit", class: "btn btn-primary
-                      base-color loading-after" do %>
-                      <i class="ace-icon fa fa-check"></i>
-                      <span><%= t "invoices.accept_shipper.button" %></span>
-                    <% end %>
-                  <% end %>
-                </td>
-              </tr>
-            <% end %>
+            <%= render "shop/list_shippers/list_shippers_content" %>
           </tbody>
         </table>
       </div>

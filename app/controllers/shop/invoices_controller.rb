@@ -41,7 +41,11 @@ class Shop::InvoicesController < Shop::ShopBaseController
           scope: {current_user: current_user}
         @invoice_simple = invoice_simple.simple
         if passive_favorites.any?
-          send_all_notification = NotificationServices::SendAllNotificationService.new owner: current_user,
+          # send_all_notification = NotificationServices::SendAllNotificationService.new owner: current_user,
+          #   recipients: passive_favorites, status: "favorite", invoice: @invoice,
+          #   click_action: Settings.invoice_detail, invoice_simple: @invoice_simple
+          # send_all_notification.perform
+          send_all_notification = NotificationServicesNodejs::SendAllNotificationServiceNodejs.new owner: current_user,
             recipients: passive_favorites, status: "favorite", invoice: @invoice,
             click_action: Settings.invoice_detail, invoice_simple: @invoice_simple
           send_all_notification.perform

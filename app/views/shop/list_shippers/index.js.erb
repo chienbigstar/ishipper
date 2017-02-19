@@ -1,3 +1,9 @@
-close_loading_after();
-$('#id-nht-list-shippers').html('<%= j render "list_shippers" %>');
-$('#id-nht-list-shippers').modal('show');
+<% if params["add_more"] == "1" %>
+  $('#hatd-shipper-table-content').html('<%= j render "shop/list_shippers/list_shippers_content" %>');
+<% else %>
+  close_loading_after();
+  list_shippers = $('#id-nht-list-shippers');
+  list_shippers.html('<%= j render "list_shippers" %>');
+  list_shippers.attr('invoice_id', '<%= @invoice.id %>');
+  list_shippers.modal('show');
+<% end %>

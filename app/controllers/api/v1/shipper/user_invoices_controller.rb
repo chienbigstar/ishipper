@@ -47,7 +47,7 @@ class Api::V1::Shipper::UserInvoicesController < Api::ShipperBaseController
       create_user_invoice_history = HistoryServices::CreateUserInvoiceHistoryService.
         new user_invoice: @user_invoice, creater_id: current_user.id, status: "init"
       create_user_invoice_history.perform
-      create_notification = NotificationServices::CreateNotificationService.new owner: current_user,
+      create_notification = NotificationServicesNodejs::CreateNotificationServiceNodejs.new owner: current_user,
         recipient: @recipient, status: "receive", invoice: @invoice,
         click_action: Settings.list_shipper_register, invoice_simple: @invoice
       create_notification.perform

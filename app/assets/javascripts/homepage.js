@@ -81,3 +81,9 @@ function event_click_menu_main() {
     reset_shipper_variable();
   })
 }
+
+$(document).on('ready', function(){
+  $('#area_hidden').append('<a data-remote="true" href="/realtime/new"></a>');
+  $('#area_hidden').children().trigger('click');
+  $('#area_hidden').html('');
+});
