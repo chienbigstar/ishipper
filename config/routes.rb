@@ -1,6 +1,8 @@
 require "api_constraints"
 
 Rails.application.routes.draw do
+  get 'testreacts/index'
+
   mount Ckeditor::Engine => "/ckeditor"
   mount ActionCable.server => "/cable"
   namespace :api, defaults: {format: "json"} do
@@ -80,4 +82,5 @@ Rails.application.routes.draw do
     resources :invoices
   end
   get "/realtime/new", to: "realtime#new"
+  get "/testreacts/index", to: "testreacts#index"
 end

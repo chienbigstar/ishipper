@@ -24,5 +24,11 @@
 //= require jquery.remotipart
 //= require bootstrap
 //= require turbolinks
+//= require react
+//= require react_ujs
+//= require components
 //= require_tree .
 //= require ckeditor/init
+//= require react
+//= require react_ujs
+//= require components
